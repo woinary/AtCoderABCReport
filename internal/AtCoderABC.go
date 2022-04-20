@@ -4,10 +4,10 @@ import "strconv"
 
 // コンテスト情報
 type AtCoderABC struct {
-	ContestBaseUrl, ContestPrefix                            string
-	ContestTask, ContestLanguage, ContestStasus, ContestUser string
-	ContestCount, ContestPage                                int
-	ScrapingWaitMinute                                       int
+	ContestBaseUrl, ContestPrefix                                 string
+	ContestTask, ContestLanguage, ContestStasus, ContestUser      string
+	ContestCount, ContestStartPage, ContestEndPage, ReportPerPage int
+	ScrapingWaitMinute                                            int
 }
 
 // 取得先ULの生成

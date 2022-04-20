@@ -1,25 +1,25 @@
 # AtCoder ABCcontest 設定ファイル（サンプル）
 ## AtCoderのURL（原則変更しない）
-contestBaseUrl:     "https://atcoder.jp"
+contestBaseUrl:     ""
 ## ABCのURL（原則変更しない）
-contestPrefix:      "/contests/abc"
+contestPrefix:      ""
 ## コンテストの回数
-contestCount:       247
+contestCount:       
 ## 開始ページ
-contestStartPage:   1
+contestStartPage:   
 ## 終了ページ
-contestEndPage:     9999
+contestEndPage:     
 ## 1ページの項目数（原則変更しない）
-reportPerPage:      20
+reportPerPage:      
 ## 出力エンコーディング
-outputSjis:         true
+outputSjis:         false
 ## 検索条件
 condition:
   ### 問題
-  contestTask:        "abc247_a"
+  contestTask:      ""
   ### 言語
-  contestLanguage:    ""
+  contestLanguage:  ""
   ### ステータス（AC:正解）
-  contestStasus:      "AC"
+  contestStasus:    ""
   ### ユーザ
-  contestUser:        ""
+  contestUser:      ""

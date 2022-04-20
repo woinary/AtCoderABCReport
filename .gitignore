@@ -10,3 +10,4 @@
 *.xlsx
 *.yml
 !template.yml
+!internal/test_*.yml

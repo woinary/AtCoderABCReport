@@ -9,7 +9,6 @@ import (
 	"AtCoderABCReport/internal"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/go-yaml/yaml"
 )
 
 // スクレイピングの本体
@@ -22,12 +21,14 @@ func runScraping(config *internal.Config, outputFile *os.File) error {
 		ContestLanguage:    config.Condition.ContestLanguage,
 		ContestStasus:      config.Condition.ContestStasus,
 		ContestUser:        config.Condition.ContestUser,
-		ContestPage:        1,
+		ContestStartPage:   config.ContestStartPage,
+		ContestEndPage:     config.ContestEndPage,
+		ReportPerPage:      config.ReportPerPage,
 		ScrapingWaitMinute: 1,
 	}
 
 	// URL生成
-	url := configAtCoderABC.MakeUrl(configAtCoderABC.ContestPage)
+	url := configAtCoderABC.MakeUrl(configAtCoderABC.ContestStartPage)
 	internal.OutputStderr("fetching... "+url, true)
 
 	// スクレイピング実行
@@ -58,13 +59,17 @@ func runScraping(config *internal.Config, outputFile *os.File) error {
 	docItems.Find("li a").Each(func(i int, s *goquery.Selection) {
 		numPages, _ = strconv.Atoi(s.Text())
 	})
+	if numPages > config.ContestEndPage {
+		numPages = config.ContestEndPage
+	}
 	internal.OutputStderr("report num is "+strconv.Itoa(numPages), true)
 
-	count := 0
-	for i := configAtCoderABC.ContestPage; i <= numPages; i++ {
+	count := (config.ContestStartPage - 1) * config.ReportPerPage
+	for i := configAtCoderABC.ContestStartPage; i <= numPages; i++ {
 		// 最初のページでなければページを取得する
-		if i > configAtCoderABC.ContestPage {
+		if i > configAtCoderABC.ContestStartPage {
 			// スクレイピング用に1分ウェイトを入れる
+			internal.OutputStderr("Waiting...", true)
 			time.Sleep(time.Minute * time.Duration(configAtCoderABC.ScrapingWaitMinute))
 
 			// URL生成
@@ -138,27 +143,19 @@ func main() {
 	}
 	configFileName := os.Args[1]
 
-	// 出力ファイル名は設定ファイル名の拡張子をcsvにしたものにする
-	outputFileName := strings.Replace(configFileName, "yml", "csv", 1)
-	internal.OutputStderr("Output file: "+outputFileName, true)
-
 	// 設定ファイルのチェック
 	if _, err := os.Stat(configFileName); err != nil {
 		internal.OutputStderr(err.Error(), true)
 		os.Exit(2)
 	}
 
-	// 設定ファイル(YAML)を読み込み
-	configFile, err := os.Open(configFileName)
-	if err != nil {
-		internal.OutputStderr(err.Error(), true)
-		os.Exit(3)
-	}
-	defer configFile.Close()
-	config := internal.Config{}
+	// 出力ファイル名は設定ファイル名の拡張子をcsvにしたものにする
+	outputFileName := strings.Replace(configFileName, "yml", "csv", 1)
+	internal.OutputStderr("Output file: "+outputFileName, true)
 
-	// 設定ファイル読み取り
-	if err := yaml.NewDecoder(configFile).Decode(&config); err != nil {
+	// 設定ファイル読み込み
+	config := internal.Config{}
+	if err := config.ReadConfigFile(configFileName); err != nil {
 		internal.OutputStderr(err.Error(), true)
 		os.Exit(4)
 	}

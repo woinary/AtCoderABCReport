@@ -4,7 +4,7 @@ contestBaseUrl:     "https://atcoder.jp"
 ## ABCのURL（原則変更しない）
 contestPrefix:      "/contests/abc"
 ## コンテストの回数
-contestCount:       247
+contestCount:       123
 ## 開始ページ
 contestStartPage:   1
 ## 終了ページ
@@ -16,10 +16,10 @@ outputSjis:         true
 ## 検索条件
 condition:
   ### 問題
-  contestTask:        "abc247_a"
+  contestTask:      "abc247_a"
   ### 言語
-  contestLanguage:    ""
+  contestLanguage:  "Go"
   ### ステータス（AC:正解）
-  contestStasus:      "AC"
+  contestStasus:    "AC"
   ### ユーザ
-  contestUser:        ""
+  contestUser:      "user"
