@@ -1,6 +1,5 @@
 # AtCoder コンテスト提出結果取得
-![GitHub go.mod Go version (subdirectory of monorepo)](https://img.shields.io/github/go-mod/go-version/woinary/AtCoderABCreport?filename=go.mod) ![GitHub](https://img.shields.io/github/license/woinary/AtCoderABCreport) ![Lines of code](https://img.shields.io/tokei/lines/github/woinary/AtCoderABCreport)
-
+![GitHub go.mod Go version (subdirectory of monorepo)](https://img.shields.io/github/go-mod/go-version/woinary/AtCoderABCReport?filename=go.mod) ![GitHub](https://img.shields.io/github/license/woinary/AtCoderABCReport)
 ## 概要
 
 AtCoder Beginner Contestの提出結果を取得してCSV出力します。
