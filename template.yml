@@ -1,0 +1,19 @@
+# AtCoder ABCcontest 設定ファイル（サンプル）
+## AtCoderのURL（原則変更しない）
+contestBaseUrl:     "https://atcoder.jp"
+## ABCのURL（原則変更しない）
+contestPrefix:      "/contests/abc"
+## コンテストの回数
+contestCount:       247
+## 出力エンコーディング
+outputSjis:         true
+## 検索条件
+condition:
+  ### 問題
+  contestTask:        "abc247_a"
+  ### 言語
+  contestLanguage:    ""
+  ### ステータス（AC:正解）
+  contestStasus:      "AC"
+  ### ユーザ
+  contestUser:        ""
